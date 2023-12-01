@@ -39,7 +39,7 @@ jobs:
         run: npm ci     
 
       - name: Set Feed Details
-        run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_APIKEY}}
+        run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_NPMAPIKEY}}
 
       - name: Publish Package
         run: npm publish --registry ${{secrets.PRIVATEFEED_NPMURL}}
