@@ -1,20 +1,7 @@
-Test utility for Event Store projections
 
-## Usage
-Add utility to projection
-```javascript
-var fromAll = fromAll || require('event-store-projection-testing').scope.fromAll;
-var emit = emit || require('event-store-projection-testing').scope.emit;
-
-fromAll()
-  .when({...});
-```
-[sample projection](https://github.com/Sergej-Popov/event-store-projection-testing/blob/master/tests/projection.js)
-
-Start testing
-```javascript
 require('chai').should();
-var projection = require('event-store-projection-testing');
+const { expect } = require('chai')
+var projection = require('../src/util');
 require('./projection');
 
 describe('Projection tests', function () {
@@ -66,4 +53,3 @@ describe('Projection tests', function () {
   });
 
 });
-```
