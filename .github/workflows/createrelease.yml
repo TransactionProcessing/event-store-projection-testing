@@ -36,10 +36,10 @@ jobs:
           new-string: ${{ steps.get_version.outputs.VERSION }}
 
       - name: NPM Clean Install      
-        - run: npm ci     
+        run: npm ci     
 
       - name: Set Feed Details
-        - run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_APIKEY}}
+        run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_APIKEY}}
 
       - name: Publish Package
-        - run: npm publish --registry ${{secrets.PRIVATEFEED_NPMURL}}
+        run: npm publish --registry ${{secrets.PRIVATEFEED_NPMURL}}
