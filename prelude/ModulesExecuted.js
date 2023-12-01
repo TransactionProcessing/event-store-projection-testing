@@ -1,6 +1,7 @@
 ﻿"use strict";
 
-var $modules = (function() {
+
+var modules = (function() {
 	var loadedModules = {};
 	var modules = {
 		require: function(moduleName) {
@@ -17,4 +18,4 @@ var $modules = (function() {
 	return modules;
 })();
 
-module.exports = $modules;
+modules;
