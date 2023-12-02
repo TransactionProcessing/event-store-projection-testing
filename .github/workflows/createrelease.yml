@@ -14,8 +14,9 @@ jobs:
           node-version: 14
       - run: npm ci
       - run: npm test
-      - run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_NPMAPIKEY}}
-      - run: npm publish 
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.PRIVATEFEED_NPMAPIKEY }}
       
   #publish-npm:
   #  needs: build
