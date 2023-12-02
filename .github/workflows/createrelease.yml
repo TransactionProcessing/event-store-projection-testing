@@ -15,14 +15,15 @@ jobs:
       - run: npm ci
       - run: npm test
 
-  publish-npm:
+    publish-npm:
     needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: '20.x'
+          registry-url: ${{secrets.PRIVATEFEED_NPMURL}}
       - name: Get the version
         id: get_version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}     
@@ -36,10 +37,12 @@ jobs:
           new-string: ${{ steps.get_version.outputs.VERSION }}
 
       - name: NPM Clean Install      
-        run: npm ci     
+        - run: npm ci     
 
-      - name: Set Feed Details
-        run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_NPMAPIKEY}}
+      #- name: Set Feed Details
+      #  - run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_APIKEY}}
 
       - name: Publish Package
-        run: npm publish --registry ${{secrets.PRIVATEFEED_NPMURL}}
+        - run: npm publish 
+          env:
+            NODE_AUTH_TOKEN: ${{secrets.PRIVATEFEED_NPMURL}}
