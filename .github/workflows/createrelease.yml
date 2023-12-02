@@ -20,7 +20,7 @@ jobs:
           new-string: ${{ steps.get_version.outputs.VERSION }}
       - run: npm ci
       - run: npm test
-      - uses: JS-DevTools/npm-publish@v1
+      - uses: honzabilek4/npm-publish@v1.5.1
         with:
           token: ${{ secrets.PRIVATEFEED_NPMAPIKEY }}
       
