@@ -27,6 +27,9 @@ jobs:
         env:
           NPM_TOKEN: ${{secrets.PRIVATEFEED_NPMAPIKEY}}
 
+      - name: Show .npmrc content
+        run: cat .npmrc
+        
       - name: Publish to npm
         run: npm publish --access public
 
