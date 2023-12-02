@@ -14,35 +14,37 @@ jobs:
           node-version: 14
       - run: npm ci
       - run: npm test
+      - run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_NPMAPIKEY}}
+      - run: npm publish 
+      
+  #publish-npm:
+  #  needs: build
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@v2
+  #    - uses: actions/setup-node@v3
+  #      with:
+  #        node-version: '20.x'
+  #        registry-url: ${{secrets.PRIVATEFEED_NPMURL}}
+  #    - name: Get the version
+  #      id: get_version
+  #      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}     
+  #      shell: bash #
 
-  publish-npm:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20.x'
-          registry-url: ${{secrets.PRIVATEFEED_NPMURL}}
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}     
-        shell: bash 
+      #- name: Set Version Number          
+       # uses: MathieuSoysal/replace-string-in-file@v1.0.0
+       # with:
+       #   file: package.json
+       #   old-string: 2.0.1
+       #   new-string: ${{ steps.get_version.outputs.VERSION }}
 
-      - name: Set Version Number          
-        uses: MathieuSoysal/replace-string-in-file@v1.0.0
-        with:
-          file: package.json
-          old-string: 2.0.1
-          new-string: ${{ steps.get_version.outputs.VERSION }}
-
-      - name: NPM Clean Install      
-        run: npm ci     
+      #- name: NPM Clean Install      
+      #  run: npm ci     
 
       #- name: Set Feed Details
       #  - run: npm set ${{secrets.PRIVATEFEED_NPMURL}}:_authToken ${{secrets.PRIVATEFEED_APIKEY}}
 
-      - name: Publish Package
-        run: npm publish 
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.PRIVATEFEED_NPMAPIKEY}}
+      #- name: Publish Package
+      #  run: npm publish 
+      #  env:
+      #    NODE_AUTH_TOKEN: ${{secrets.PRIVATEFEED_NPMAPIKEY}}
