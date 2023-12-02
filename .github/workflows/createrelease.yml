@@ -45,4 +45,4 @@ jobs:
       - name: Publish Package
         run: npm publish 
         env:
-          NODE_AUTH_TOKEN: ${{secrets.PRIVATEFEED_NPMURL}}
+          NODE_AUTH_TOKEN: ${{secrets.PRIVATEFEED_NPMAPIKEY}}
