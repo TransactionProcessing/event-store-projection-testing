@@ -10,26 +10,21 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 12.x
-          registry-url: 'https://www.myget.org/F/transactionprocessingnpm/npm/'
-
+        
       - name: Install dependencies
         run: npm ci
 
       - name: Run tests
         run: npm test
-
-      - name: Authenticate with npm
-        run: echo "https://www.myget.org/F/transactionprocessingnpm/npm/:_authToken=60e3c58a-8c0b-4377-864f-4166824892f8" > .npmrc
-        env:
-          NPM_TOKEN: 60e3c58a-8c0b-4377-864f-4166824892f8
         
-      - name: Publish to npm
-        run: npm publish --access public
-
-      - name: Clean up
-        run: rm .npmrc
+  release:
+    needs: build
+    name: 🚀 Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Publish
+        uses: amalej/npm-package-publisher@v1.0.2
+        with:
+          access-token: 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        
