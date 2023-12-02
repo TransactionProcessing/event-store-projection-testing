@@ -1,6 +1,7 @@
 {
   "name": "event-store-projection-testing-framework",
   "version": "2.1.0",
+  "packageManager": "pnpm@8.11.0",
   "description": "Test framework for Event Store projections",
   "main": "index.js",
   "scripts": {
