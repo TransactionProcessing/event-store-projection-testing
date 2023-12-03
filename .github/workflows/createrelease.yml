@@ -17,6 +17,18 @@ jobs:
         with:
           node-version-file: '.node-version'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}     
+        shell: bash 
+      
+      - uses: MYXOMOPX/modify-pkg-json@master
+        id: setcmnver
+        with: 
+          target: ./package.json
+          action: "set_version"
+          argument: ${{ steps.get_version.outputs.VERSION }}
           
       - name: Install dependencies
         run: npm ci
