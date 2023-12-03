@@ -25,18 +25,21 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
+      #- name: Install pnpm
+      #  uses: pnpm/action-setup@v2
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.node-version'
           registry-url: 'https://registry.npmjs.org'
-          cache: 'pnpm'
+          #cache: 'pnpm'
 
-      - run: pnpm install
+      - run: npm set https://registry.npmjs.org:_authToken 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   
+      - run: npm publish --registry https://registry.npmjs.org  
 
-      - run: pnpm publish --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: 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        
+      #- run: pnpm install
+
+      #- run: pnpm publish --no-git-checks
+      #  env:
+      #    NODE_AUTH_TOKEN: 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        
