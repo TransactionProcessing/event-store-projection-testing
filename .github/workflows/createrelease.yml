@@ -36,7 +36,7 @@ jobs:
           #cache: 'pnpm'
 
       - run: npm set https://registry.npmjs.org:_authToken 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   
-      - run: npm publish #--registry https://registry.npmjs.org  
+      - run: npm publish 
 
       #- run: pnpm install
 
