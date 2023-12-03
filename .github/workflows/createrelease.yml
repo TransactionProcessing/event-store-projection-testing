@@ -33,13 +33,6 @@ jobs:
         with:
           node-version-file: '.node-version'
           registry-url: 'https://registry.npmjs.org'
-          #cache: 'pnpm'
 
-      - run: npm set https://registry.npmjs.org:_authToken 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   
-      - run: npm publish --force
-
-      #- run: pnpm install
-
-      #- run: pnpm publish --no-git-checks
-      #  env:
-      #    NODE_AUTH_TOKEN: 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        
+      - run: npm set https://registry.npmjs.org:_authToken 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
+      - run: npm publish
