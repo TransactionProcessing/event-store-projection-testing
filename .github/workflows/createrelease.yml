@@ -34,5 +34,5 @@ jobs:
           node-version-file: '.node-version'
           registry-url: 'https://registry.npmjs.org'
 
-      - run: npm set https://registry.npmjs.org:_authToken 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
+      - run: npm set https://registry.npmjs.org:_authToken ${{secrets.KEY}}
       - run: npm publish
